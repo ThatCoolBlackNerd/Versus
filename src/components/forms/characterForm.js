@@ -10,9 +10,10 @@ class CharacterForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.code();
-        //this.props.codeTwo();
+        this.props.codeTwo();
+
         console.log(this.context);
-        //this.props.history.push('/versus')
+        this.props.history.push('/versus')
     }
 
     render() {

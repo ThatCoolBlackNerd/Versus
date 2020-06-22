@@ -19,7 +19,7 @@ class Versus extends Component {
     componentDidMount () {
 
         function getSuperDataOne() {
-            let code = this.context.characterOne.code;
+            let code = this.context.characterOneCode;
             let apiKey = process.env.REACT_APP_SH_APIKEY;
             let url = `https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/${apiKey}/${code}`;
 
@@ -27,7 +27,7 @@ class Versus extends Component {
         }
 
         function getSuperDataTwo() {
-            let code = this.context.characterTwo.code;
+            let code = this.context.characterTwoCode;
             let apiKey = process.env.REACT_APP_SH_APIKEY;
             let url = `https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/${apiKey}/${code}`;
 

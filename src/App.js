@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import CharacterForm from './components/forms/characterForm';
 import Versus from './components/versus/versus';
-import { characterList } from './components/utilities/characterList';
+import { characters, characterList } from './components/utilities/characterList';
 import CharacterContext from './components/context/characterContext';
 
 class App extends Component {
@@ -44,12 +44,19 @@ class App extends Component {
 
   setCharacterCode = () => {
     let characterOneCode = Object.keys(characterList).find(key => characterList[key] === this.state.characterOneName);
-    this.setState({
+    console.log(characterOneCode);
+    
+    this.setState({ 
       characterOneCode: characterOneCode
     })
-    
-    console.log(this.state.characterOneCode);
-    console.log(characterOneCode);
+  }
+
+  setCharacterCodeTwo = () => {
+    let characterTwoCode = Object.keys(characterList).find(key => characterList[key] === this.state.characterTwoName);
+    console.log(characterTwoCode)
+    this.setState({ 
+      characterTwoCode: characterTwoCode
+    })
   }
  
   render() {
