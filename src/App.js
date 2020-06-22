@@ -2,83 +2,76 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import CharacterForm from './components/forms/characterForm';
 import Versus from './components/versus/versus';
-import { characters, characterList } from './components/utilities/characterList';
+import { characterList } from './components/utilities/characterList';
 import CharacterContext from './components/context/characterContext';
 
 class App extends Component {
   state = {
-    chosenCharacters: {
-      characterOne: {
-        name: "",
-        code: ""
-      },
-      characterTwo: {
-        name: "",
-        code: ""
-      }
-    }
+    characterOneName: "",
+    characterOneCode: "",
+    characterTwoName: "",
+    characterTwoCode: ""
   }
 
-  handleChange = (e) => {
-    this.setState({ chosenCharacters: {
-      characterOne: {
-          name: e.currentTarget.value
-      }
-  }})
+  changeCharacterOne = (e) => {
+    this.setState({ 
+      characterOneName: e.currentTarget.value
+    })
+    console.log('Character 1 Changed')
   }
 
-  handleSelect = (value) => {
-    this.setState({ chosenCharacters: {
-      characterOne: {
-          name: value
-      }
-  }})
+  setCharacterOne = (value) => {
+    this.setState({ 
+      characterOneName: value
+    })
+    console.log('Character 1 Selected')
+  } 
+
+
+  changeCharacterTwo = (e) => {
+    this.setState({ 
+      characterTwoName: e.currentTarget.value
+    })
+    console.log('Character 2 Changed')
   }
 
-  handleChangeTwo = (e) => {
-    this.setState({ chosenCharacters: {
-      characterTwo: {
-          name: e.currentTarget.value
-      }
-  }})
-  }
-  handleSelectTwo = (value) => {
-    this.setState({ chosenCharacters: {
-      characterTwo: {
-          name: value
-      }
-  }})
+  setCharacterTwo = (value) => {
+    this.setState({ 
+      characterTwoName: value
+    })
+    console.log('Characater 2 Selected')
   }
 
-  handleCharacterCode = () => {
-    let characterCode = Object.keys(characterList).find(key => characterList[key] === this.state.chosenCharacters.characterOne.name);
-    console.log(characterCode);
+  setCharacterCode = () => {
+    let characterOneCode = Object.keys(characterList).find(key => characterList[key] === this.state.characterOneName);
+    this.setState({
+      characterOneCode: characterOneCode
+    })
     
-    this.setState({ chosenCharacters: {
-      characterOne: {
-          code: characterCode
-      }
-  }})
+    console.log(this.state.characterOneCode);
+    console.log(characterOneCode);
   }
  
-
-
   render() {
     return (
-      <CharacterContext.Provider value={{...this.state}}>
+      <CharacterContext.Provider value={
+        {...this.state, 
+        setCharacterOne: this.setCharacterOne,
+        setCharacterTwo: this.setCharacterTwo,
+        changeCharacterOne: this.changeCharacterOne,
+        changeCharacterTwo: this.changeCharacterTwo,
+        }
+      }>
         <div>
-        <Switch>
-          <Route exact path='/' render={(props) => 
-            <CharacterForm 
-              onChange={this.handleChange}
-              onSelect={this.handleSelect}
-              onChangeTwo={this.handleChangeTwo}
-              onSelectTwo={this.handleSelectTwo}
-              code={this.handleCharacterCode}
-              {...props}/>} 
-          />
-          <Route path='/versus' component={Versus}/>
-        </Switch>
+          <Switch>
+            <Route exact path='/' render={(props) => 
+              <CharacterForm 
+                code={this.setCharacterCode}
+                codeTwo={this.setCharacterCodeTwo}
+                {...props}/>} 
+              />
+            <Route path='/versus' component={Versus}/>
+          </Switch>
         </div>
       </CharacterContext.Provider>
     )

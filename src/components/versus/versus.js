@@ -9,26 +9,49 @@ class Versus extends Component {
         characterOne: {
             superData: {},
             comicData: {}
+        },
+        characterTwo: {
+            superData: {},
+            comicData: {}
         }
     }
 
-    async componentDidMount () {
-        let code = this.context.chosenCharacters.characterOne.code;
-        let apiKey = '10101046963798377';
-        let url = `https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/${apiKey}/${code}`
+    componentDidMount () {
+
+        function getSuperDataOne() {
+            let code = this.context.characterOne.code;
+            let apiKey = process.env.REACT_APP_SH_APIKEY;
+            let url = `https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/${apiKey}/${code}`;
+
+            return axios.get(url)
+        }
+
+        function getSuperDataTwo() {
+            let code = this.context.characterTwo.code;
+            let apiKey = process.env.REACT_APP_SH_APIKEY;
+            let url = `https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/${apiKey}/${code}`;
+
+            return axios.get(url)
+        }
         
-        const response = await axios.get(url);
-        const shData = response.data;
+        Promise.all([getSuperDataOne(), getSuperDataTwo()])
+            .then( (results) => {
+                const dataOne = results[0];
+                const dataTwo = results[1];
 
-        let apiKeyTwo = '8783397cb5c4676dffcda5c5af5d4c9086a4ae9d';
-        let urlTwo = `https://cors-anywhere.herokuapp.com/https://www.comicvine.com/api/search?api_key=${apiKeyTwo}&limit=1&format=json&query=${shData.biography["full-name"]}&query=${shData.name}&resources=character`
+                console.log(dataOne.data, dataTwo.data)
+
+                this.setState({
+                    characterOne: {
+                        superData: dataOne.data
+                    },
+                    characterTwo: {
+                        superData: dataTwo.data
+                    }
+                })
+            });
         
-        const responseTwo = await axios.get(urlTwo);
-        const cvData = responseTwo.data.results[0];
-
-        this.setState({ characterOne: { superData: shData, comicData: cvData }})
-        console.log(this.state.characterOne.superData, this.state.characterOne.comicData);
-
+        console.log(this.state);
     }
 
 
