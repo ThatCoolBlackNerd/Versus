@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import CharacterForm from './components/forms/characterForm';
 import Versus from './components/versus/versus';
-import { characters, characterList } from './components/utilities/characterList';
+import { characterList } from './components/utilities/characterList';
 import CharacterContext from './components/context/characterContext';
 
 class App extends Component {
   state = {
-    characterOneName: "",
-    characterOneCode: "",
+    characterOneName: "", 
     characterTwoName: "",
-    characterTwoCode: ""
+    characterCodes: {
+      codeOne: "",
+      codeTwo: ""
+    }
   }
 
   changeCharacterOne = (e) => {
@@ -47,16 +49,24 @@ class App extends Component {
     console.log(characterOneCode);
     
     this.setState({ 
-      characterOneCode: characterOneCode
+      characterCodes: {
+        codeOne: characterOneCode
+      }
     })
+
+    console.log(this.state.characterCodes.codeOne)
   }
 
   setCharacterCodeTwo = () => {
     let characterTwoCode = Object.keys(characterList).find(key => characterList[key] === this.state.characterTwoName);
     console.log(characterTwoCode)
     this.setState({ 
-      characterTwoCode: characterTwoCode
+      characterCodes: {
+        codeTwo: characterTwoCode
+      }
     })
+
+    console.log(this.state.characterCodes.codeTwo)
   }
  
   render() {

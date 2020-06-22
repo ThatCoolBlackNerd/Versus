@@ -13,7 +13,7 @@ class CharacterForm extends Component {
         this.props.codeTwo();
 
         console.log(this.context);
-        this.props.history.push('/versus')
+        //this.props.history.push('/versus')
     }
 
     render() {
