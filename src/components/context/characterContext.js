@@ -3,10 +3,8 @@ import React, { createContext } from 'react';
 const CharacterContext = createContext({
     characterOneName: "",
     characterTwoName: "",
-    characterCodes: {
-        codeOne: "",
-        codeTwo: ""
-    },
+    characterCodeOne: "",
+    characterCodeTwo: "",
     setCharacterOne: () => {},
     changeCharacterOne: () => {},
     setCharacterTwo: () => {},

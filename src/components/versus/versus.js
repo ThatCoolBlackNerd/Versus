@@ -6,20 +6,15 @@ class Versus extends Component {
     static contextType = CharacterContext;
 
     state = {
-        characterOne: {
-            superData: {},
-            comicData: {}
-        },
-        characterTwo: {
-            superData: {},
-            comicData: {}
-        }
+        characterOneData: "",
+        characterTwoData: ""
     }
 
     componentDidMount () {
+        let code = this.context.characterCodeOne;
+        let codeTwo = this.context.characterCodeTwo;
 
         function getSuperDataOne() {
-            let code = this.context.characterOneCode;
             let apiKey = process.env.REACT_APP_SH_APIKEY;
             let url = `https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/${apiKey}/${code}`;
 
@@ -27,9 +22,8 @@ class Versus extends Component {
         }
 
         function getSuperDataTwo() {
-            let code = this.context.characterTwoCode;
             let apiKey = process.env.REACT_APP_SH_APIKEY;
-            let url = `https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/${apiKey}/${code}`;
+            let url = `https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/${apiKey}/${codeTwo}`;
 
             return axios.get(url)
         }
@@ -42,23 +36,33 @@ class Versus extends Component {
                 console.log(dataOne.data, dataTwo.data)
 
                 this.setState({
-                    characterOne: {
-                        superData: dataOne.data
-                    },
-                    characterTwo: {
-                        superData: dataTwo.data
-                    }
+                    characterOneData: dataOne.data,
+                    characterTwoData: dataTwo.data
                 })
             });
-        
-        console.log(this.state);
+
     }
 
 
     render() {
+        characterOne = this.state.characterOneData;
+        characterTwo = this.state.characterTwoData;
+
         return (
             <div>
-               <h1>Hello Worccld</h1> 
+               <div className="row">
+                   <div className="column">
+                        <h2>{characterOne.name}</h2>
+                        <img src={characterOne.image.url} />
+                   </div>
+                   <div className="column">
+                       Versus
+                   </div>
+                   <div className="column">
+                        <h2>{characterOne.name}</h2>
+                        <img src={characterTwo.image.url} />
+                   </div>
+               </div>
             </div>
         )
     }

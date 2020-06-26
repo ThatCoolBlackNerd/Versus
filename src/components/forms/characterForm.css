@@ -1,0 +1,83 @@
+form {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    font-size: 35px;
+    font-family: 'Bangers', cursive;
+}
+
+input {
+    width:50%;
+    border:2px solid #aaa;
+    border-radius:4px;
+    font-size: 14px;
+    margin:8px 0;
+    outline:none;
+    padding:8px;
+    box-sizing:border-box;
+    transition:.3s;
+}
+
+.charSelect {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+}
+
+.landingPage {
+    height: 100vh;
+    background-image: url(comic_background.jpg);
+    background-size: cover; 
+}
+
+.subTitle {
+    font-size: 22px;
+    text-align: center;
+    font-family: 'Bangers', cursive;
+    color: white;
+    margin-top: 5%;
+    -webkit-text-stroke: 1px black;
+    color: white;
+    text-shadow:
+        3px 3px 0 #000,
+      -1px -1px 0 #000,  
+       1px -1px 0 #000,
+       -1px 1px 0 #000,
+        1px 1px 0 #000;
+}
+
+.submit {
+    display: inline-block;
+	padding: 10px 14px;
+	color: whitesmoke;
+	border: 3px solid dodgerblue;
+	text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 120%;
+	background-color: dodgerblue;
+	border-radius: 4px;
+	transition: background-color 300ms ease;
+    cursor: pointer;
+}
+
+.submit:hover {
+    box-shadow:0 0 8px 0;
+    color: whitesmoke;
+}
+    
+.title {
+    padding-top: 10%;
+    font-size: 50px;
+    -webkit-text-stroke: 1px black;
+    color: white;
+    text-shadow:
+        3px 3px 0 #000,
+        -1px -1px 0 #000,  
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+}

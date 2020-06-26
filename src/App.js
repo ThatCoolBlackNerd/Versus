@@ -9,10 +9,8 @@ class App extends Component {
   state = {
     characterOneName: "", 
     characterTwoName: "",
-    characterCodes: {
-      codeOne: "",
-      codeTwo: ""
-    }
+    characterCodeOne: "",
+    characterCodeTwo: ""
   }
 
   changeCharacterOne = (e) => {
@@ -24,7 +22,8 @@ class App extends Component {
 
   setCharacterOne = (value) => {
     this.setState({ 
-      characterOneName: value
+      characterOneName: value,
+      characterCodeOne: Object.keys(characterList).find(key => characterList[key] === value)
     })
     console.log('Character 1 Selected')
   } 
@@ -32,44 +31,47 @@ class App extends Component {
 
   changeCharacterTwo = (e) => {
     this.setState({ 
-      characterTwoName: e.currentTarget.value
+      characterTwoName: e.currentTarget.value,
     })
+    
     console.log('Character 2 Changed')
   }
 
   setCharacterTwo = (value) => {
     this.setState({ 
-      characterTwoName: value
+      characterTwoName: value,
+      characterCodeTwo: Object.keys(characterList).find(key => characterList[key] === value)
     })
     console.log('Characater 2 Selected')
   }
 
-  setCharacterCode = () => {
-    let characterOneCode = Object.keys(characterList).find(key => characterList[key] === this.state.characterOneName);
-    console.log(characterOneCode);
+  // setCharacterCode = () => {
+  //   let characterOneCode = Object.keys(characterList).find(key => characterList[key] === this.state.characterOneName);
+  //   console.log(characterOneCode);
     
-    this.setState({ 
-      characterCodes: {
-        codeOne: characterOneCode
-      }
-    })
+  //   this.setState({ 
+  //     characterCodes: {
+  //       codeOne: characterOneCode
+  //     }
+  //   })
 
-    console.log(this.state.characterCodes.codeOne)
-  }
+  //   //console.log(this.state.characterCodes.codeOne)
+  // }
 
-  setCharacterCodeTwo = () => {
-    let characterTwoCode = Object.keys(characterList).find(key => characterList[key] === this.state.characterTwoName);
-    console.log(characterTwoCode)
-    this.setState({ 
-      characterCodes: {
-        codeTwo: characterTwoCode
-      }
-    })
+  // setCharacterCodeTwo = () => {
+  //   let characterTwoCode = Object.keys(characterList).find(key => characterList[key] === this.state.characterTwoName);
+  //   console.log(characterTwoCode)
+  //   this.setState({ 
+  //     characterCodes: {
+  //       codeTwo: characterTwoCode
+  //     }
+  //   })
 
-    console.log(this.state.characterCodes.codeTwo)
-  }
+  //  // console.log(this.state.characterCodes.codeTwo)
+  // }
  
   render() {
+
     return (
       <CharacterContext.Provider value={
         {...this.state, 
