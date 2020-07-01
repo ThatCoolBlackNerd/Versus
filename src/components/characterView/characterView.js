@@ -70,11 +70,11 @@ class CharacterView extends Component {
                 <div className="characterContainer">
                     <div className="characterInfo">
                     <div className="data dta-left">
-                        {this.state.showCharacterOneApp ? 
+                        {this.state.characterOneApp ? 
                             <img className='imgTwo'src={face} alt={characterOne.name} /> : 
-                         this.state.showCharacterOneBio ? 
+                         this.state.characterOneBio ? 
                             <img className='imgTwo'src={script} alt={characterOne.name} /> :
-                        this.state.showCharacterOnePower ?
+                        this.state.characterOnePower ?
                             <img className='imgTwo' src={fist} alt={characterOne.name} /> :
                             <img className='imgTwo'src={face} alt={characterOne.name} />
                         }
@@ -123,11 +123,11 @@ class CharacterView extends Component {
                     <div className="characterContainer">
                     <div className="characterInfo">
                         <div className="data dta-left">
-                            {this.state.showCharacterTwoApp ? 
+                            {this.state.characterTwoApp ? 
                                 <img className='imgTwo'src={face} alt={characterTwo.name} /> : 
-                            this.state.showCharacterTwoBio ? 
+                            this.state.characterTwoBio ? 
                                 <img className='imgTwo'src={script} alt={characterTwo.name} /> :
-                            this.state.showCharacterTwoPower ?
+                            this.state.characterTwoPower ?
                                 <img className='imgTwo' src={fist} alt={characterTwo.name} /> :
                                 <img className='imgTwo'src={face} alt={characterTwo.name} />
                             }

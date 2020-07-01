@@ -22,12 +22,12 @@ ul {
 
 h3 {
     font-size: 30px;
-    padding-bottom: 2%;
+    padding-bottom: 6%;
 }
 
 li {
-    padding: 5px;
-    font-size: 22px;
+    padding: 10px;
+    font-size: 25px;
 }
 
 .stats {
@@ -47,4 +47,9 @@ li {
 
 .logo:hover {
     background-color: gray;
+}
+
+.imgTwo {
+    width: 65%;
+    padding-bottom: 2%;
 }

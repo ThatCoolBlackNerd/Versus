@@ -34,8 +34,61 @@
 }
 
 .button {
-    padding: 5%;
-    font-size: 25px;
-    font-weight: bold;
+    display: inline;
+    margin-left: 5%;
+    font-size: 30px;
     cursor: pointer;
+    color: grey;
+   
+}
+
+.button:hover {
+    color: black;
+}
+
+.active {
+    border-bottom: 3px solid rgb(214, 33, 79);
+    font-weight: bold;
+    color: black;
+}
+
+.title-fight {
+    text-align: center;
+    font-size: 75px;
+    padding: 1%;
+    padding-bottom: 2%;
+}
+
+.right {
+    padding-bottom: 5%;
+}
+
+.left-winner {
+    border: none;
+}
+
+.loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+}
+
+.newCharacter {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5% 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.newCharacter:hover {
+    background-color: rgb(95, 68, 168);
 }

@@ -3,6 +3,8 @@ import axios from 'axios';
 import CharacterContext from '../context/characterContext';
 import CharacterView from '../characterView/characterView';
 import './versus.css';
+import Fight from '../fight/fight';
+import { Link } from 'react-router-dom';
 
 class Versus extends Component {
     static contextType = CharacterContext;
@@ -15,19 +17,19 @@ class Versus extends Component {
     }
 
     componentDidMount () {
-        //let code = this.context.characterCodeOne;
-        //let codeTwo = this.context.characterCodeTwo;
+        let code = this.context.characterCodeOne;
+        let codeTwo = this.context.characterCodeTwo;
 
         function getSuperDataOne() {
             let apiKey = process.env.REACT_APP_APIKEY;
-            let url = `https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/${apiKey}/3`;
+            let url = `https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/${apiKey}/${code}`;
 
             return axios.get(url)
         }
 
         function getSuperDataTwo() {
             let apiKey = process.env.REACT_APP_APIKEY;
-            let url = `https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/${apiKey}/4`;
+            let url = `https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/${apiKey}/${codeTwo}`;
 
             return axios.get(url)
         }
@@ -64,6 +66,22 @@ class Versus extends Component {
         })
     }
 
+    fightWinner = () => {
+        let cOne = this.state.characterOneData.powerstats;
+        let cTwo = this.state.characterTwoData.powerstats;
+        
+        let characterOneTotal = Object.keys(cOne).reduce((sum,key)=>sum+parseFloat(cOne[key]||0),0);
+        let characterTwoTotal = Object.keys(cTwo).reduce((sum,key)=>sum+parseFloat(cTwo[key]||0),0);
+
+        console.log(`Total One: ${characterOneTotal} and Total Two: ${characterTwoTotal}`)
+
+        if (characterOneTotal > characterTwoTotal) {
+            return true
+        } else {
+            return false
+        }
+    }
+
     
 
     render() {
@@ -71,7 +89,7 @@ class Versus extends Component {
        let characterTwo = this.state.characterTwoData;
     
        if (characterOne === null && characterTwo === null) {
-           return <img src="https://media2.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif" alt=""/>
+           return <img className='loading' src="https://media2.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif" alt=""/>
        } else {
             return  (
                 <React.Fragment>
@@ -80,7 +98,7 @@ class Versus extends Component {
                                 <h2>{characterOne.name}</h2>
                                 <img className="title-img" src={characterOne.image.url} alt=""/>
                         </div>
-                        <div className="right column">
+                        <div className="column">
                                 <h2>{characterTwo.name}</h2>
                                 <img className="title-img" src={characterTwo.image.url} alt=""/>
                         </div>
@@ -89,7 +107,12 @@ class Versus extends Component {
                         {characterOne.name} vs. {characterTwo.name}
                     </div>
                     <div className="buttons">
-                        <span className="button" onClick={this.showCharacterOne}>{characterOne.name}</span><span className="button" onClick={this.showCharacterTwo}>{characterTwo.name}</span>
+                        <div className={`button ${this.state.viewCharacterOne ? "active" : ""}`} onClick={this.showCharacterOne}>
+                            {characterOne.name}
+                        </div>
+                        <div className={`button ${this.state.viewCharacterTwo ? "active" : ""}`} onClick={this.showCharacterTwo}>
+                            {characterTwo.name}
+                        </div>
                     </div>
                     <CharacterView 
                         characterOne={characterOne}
@@ -97,6 +120,35 @@ class Versus extends Component {
                         viewCharacterOne={this.state.viewCharacterOne}
                         viewCharacterTwo={this.state.viewCharacterTwo}
                     />
+                    <div className="title-fight">
+                        Who Wins In A Fight!!
+                    </div>
+                    <div className="row">
+                        <div className="left left-winner column">
+                        <Fight 
+                            characterOne={characterOne}
+                            characterTwo={characterTwo}
+                        />
+                        <Link to='/'>
+                            <button className='newCharacter'>
+                                Choose New Characters
+                            </button>
+                        </Link>
+                        </div>
+                        <div className="right column">
+                            {this.fightWinner() ? (
+                                <React.Fragment>
+                                    <h2>{characterOne.name}</h2>
+                                    <img className="title-img" src={characterOne.image.url} alt=""/>
+                                </React.Fragment>
+                            ) : (
+                                <React.Fragment>
+                                    <h2>{characterTwo.name}</h2>
+                                    <img className="title-img" src={characterTwo.image.url} alt=""/>
+                                </React.Fragment>
+                            )}
+                        </div>
+                    </div>
                 </React.Fragment>
             )
        }
