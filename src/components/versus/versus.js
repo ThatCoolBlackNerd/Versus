@@ -17,19 +17,19 @@ class Versus extends Component {
     }
 
     componentDidMount () {
-        // let code = this.context.characterCodeOne;
-        // let codeTwo = this.context.characterCodeTwo;
+        let code = this.context.characterCodeOne;
+        let codeTwo = this.context.characterCodeTwo;
 
         function getSuperDataOne() {
             let apiKey = process.env.REACT_APP_APIKEY;
-            let url = `https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/${apiKey}/44`;
+            let url = `https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/${apiKey}/${code}`;
 
             return axios.get(url)
         }
 
         function getSuperDataTwo() {
             let apiKey = process.env.REACT_APP_APIKEY;
-            let url = `https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/${apiKey}/145`;
+            let url = `https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/${apiKey}/${codeTwo}`;
 
             return axios.get(url)
         }
@@ -154,6 +154,5 @@ class Versus extends Component {
        }
     }
 }
-
 
 export default Versus
