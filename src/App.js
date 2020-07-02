@@ -45,31 +45,6 @@ class App extends Component {
     console.log('Characater 2 Selected')
   }
 
-  // setCharacterCode = () => {
-  //   let characterOneCode = Object.keys(characterList).find(key => characterList[key] === this.state.characterOneName);
-  //   console.log(characterOneCode);
-    
-  //   this.setState({ 
-  //     characterCodes: {
-  //       codeOne: characterOneCode
-  //     }
-  //   })
-
-  //   //console.log(this.state.characterCodes.codeOne)
-  // }
-
-  // setCharacterCodeTwo = () => {
-  //   let characterTwoCode = Object.keys(characterList).find(key => characterList[key] === this.state.characterTwoName);
-  //   console.log(characterTwoCode)
-  //   this.setState({ 
-  //     characterCodes: {
-  //       codeTwo: characterTwoCode
-  //     }
-  //   })
-
-  //  // console.log(this.state.characterCodes.codeTwo)
-  // }
- 
   render() {
 
     return (

@@ -92,3 +92,16 @@
 .newCharacter:hover {
     background-color: rgb(95, 68, 168);
 }
+
+.win-img {
+    margin-right: auto;
+    margin-left: auto;
+    width: 50%;
+}
+
+@media only screen and (max-width: 1080px) {
+    .winner-row {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}

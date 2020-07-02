@@ -17,19 +17,19 @@ class Versus extends Component {
     }
 
     componentDidMount () {
-        let code = this.context.characterCodeOne;
-        let codeTwo = this.context.characterCodeTwo;
+        // let code = this.context.characterCodeOne;
+        // let codeTwo = this.context.characterCodeTwo;
 
         function getSuperDataOne() {
             let apiKey = process.env.REACT_APP_APIKEY;
-            let url = `https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/${apiKey}/${code}`;
+            let url = `https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/${apiKey}/44`;
 
             return axios.get(url)
         }
 
         function getSuperDataTwo() {
             let apiKey = process.env.REACT_APP_APIKEY;
-            let url = `https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/${apiKey}/${codeTwo}`;
+            let url = `https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/${apiKey}/145`;
 
             return axios.get(url)
         }
@@ -123,28 +123,28 @@ class Versus extends Component {
                     <div className="title-fight">
                         Who Wins In A Fight!!
                     </div>
-                    <div className="row">
-                        <div className="left left-winner column">
-                        <Fight 
-                            characterOne={characterOne}
-                            characterTwo={characterTwo}
-                        />
-                        <Link to='/'>
-                            <button className='newCharacter'>
-                                Choose New Characters
-                            </button>
-                        </Link>
+                    <div className="row winner-row">
+                        <div className="left-winner column">
+                            <Fight 
+                                characterOne={characterOne}
+                                characterTwo={characterTwo}
+                            />
+                            <Link to='/'>
+                                <button className='newCharacter'>
+                                    Choose New Characters
+                                </button>
+                            </Link>
                         </div>
                         <div className="right column">
                             {this.fightWinner() ? (
                                 <React.Fragment>
                                     <h2>{characterOne.name}</h2>
-                                    <img className="title-img" src={characterOne.image.url} alt=""/>
+                                    <img className="win-img" src={characterOne.image.url} alt=""/>
                                 </React.Fragment>
                             ) : (
                                 <React.Fragment>
                                     <h2>{characterTwo.name}</h2>
-                                    <img className="title-img" src={characterTwo.image.url} alt=""/>
+                                    <img className="win-img" src={characterTwo.image.url} alt=""/>
                                 </React.Fragment>
                             )}
                         </div>
